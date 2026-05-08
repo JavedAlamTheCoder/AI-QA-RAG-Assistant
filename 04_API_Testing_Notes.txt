@@ -1,0 +1,98 @@
+# API Testing Notes
+
+## What is API Testing?
+API testing validates the communication between client and server. It checks request, response, status code, headers, authentication, authorization, response body, schema, and performance.
+
+## Common HTTP Methods
+- GET: Retrieve data
+- POST: Create new data
+- PUT: Update complete data
+- PATCH: Update partial data
+- DELETE: Delete data
+
+## Important Status Codes
+- 200 OK: Request successful
+- 201 Created: Resource created
+- 204 No Content: Request successful but no response body
+- 400 Bad Request: Invalid request
+- 401 Unauthorized: Authentication required or invalid token
+- 403 Forbidden: User does not have permission
+- 404 Not Found: Resource not found
+- 409 Conflict: Duplicate or conflicting data
+- 500 Internal Server Error: Server side error
+
+## API Test Checklist
+- Validate status code
+- Validate response body
+- Validate response schema
+- Validate response headers
+- Validate response time
+- Validate authentication
+- Validate authorization
+- Validate mandatory fields
+- Validate invalid data
+- Validate boundary values
+- Validate database changes
+
+## Sample API Test Cases
+
+### TC_API_LOGIN_001 – Verify login API with valid credentials
+Method: POST  
+Endpoint: /api/login  
+Request Body:
+{
+  "email": "Javed@example.com",
+  "password": "Javed@123"
+}
+
+Expected Result:
+- Status code should be 200
+- Response should contain token
+- User ID should be present
+- Response time should be acceptable
+
+### TC_API_LOGIN_002 – Verify login API with invalid password
+Expected Result:
+- Status code should be 401 or 400
+- Proper error message should be returned
+
+### TC_API_CREATE_USER_001 – Verify create user API
+Expected Result:
+- Status code should be 201
+- User should be created
+- Created user should be available in database
+
+## API Bug Reporting Example
+Summary:
+Login API returns 500 error for valid credentials.
+
+Steps:
+1. Send POST request to /api/login
+2. Pass valid email and password
+3. Observe response
+
+Expected:
+API should return 200 with token.
+
+Actual:
+API returns 500 Internal Server Error.
+
+Severity:
+Critical
+
+Priority:
+High
+
+## Postman Validation Examples
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response contains token", function () {
+    const jsonData = pm.response.json();
+    pm.expect(jsonData.token).to.not.be.empty;
+});
+
+pm.test("Response time is less than 2000ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(2000);
+});

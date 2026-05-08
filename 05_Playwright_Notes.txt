@@ -1,0 +1,103 @@
+# Playwright Notes for QA Automation
+
+## What is Playwright?
+Playwright is an automation testing tool used for end-to-end testing of web applications. It supports Chromium, Firefox, and WebKit browsers.
+
+## Why Use Playwright?
+- Fast execution
+- Auto-waiting
+- Cross-browser testing
+- Headless and headed mode
+- Screenshots and videos
+- API testing support
+- Trace viewer
+- Good support for modern web applications
+
+## Basic Installation
+npm init playwright@latest
+
+## Run Tests
+npx playwright test
+
+## Run Tests in Headed Mode
+npx playwright test --headed
+
+## Run Specific Test File
+npx playwright test tests/login.spec.js
+
+## Show HTML Report
+npx playwright show-report
+
+## Basic Test Example
+
+```javascript
+const { test, expect } = require('@playwright/test');
+
+test('Verify login with valid credentials', async ({ page }) => {
+  await page.goto('https://JavedAlam.com/login');
+
+  await page.locator('#email').fill('JavedAlam@example.com');
+  await page.locator('#password').fill('Javed@123');
+  await page.locator('button[type="submit"]').click();
+
+  await expect(page).toHaveURL(/dashboard/);
+  await expect(page.locator('h1')).toContainText('Dashboard');
+});
+```
+
+## Login Test Scenarios
+- Login with valid credentials
+- Login with invalid password
+- Login with blank email
+- Login with blank password
+- Login with invalid email format
+- Verify error message
+- Verify logout functionality
+
+## Useful Playwright Commands
+- page.goto(url): Open URL
+- page.locator(selector): Locate element
+- fill(): Enter text
+- click(): Click element
+- expect(): Assertion
+- screenshot(): Capture screenshot
+- waitForLoadState(): Wait for page load
+
+## Screenshot on Failure
+Playwright can capture screenshots automatically through configuration.
+
+Example playwright.config.js:
+```javascript
+module.exports = {
+  use: {
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    trace: 'retain-on-failure',
+    headless: false
+  }
+};
+```
+
+## Best Practices
+- Use stable locators
+- Prefer data-testid attributes
+- Avoid hard waits
+- Use expect assertions
+- Keep tests independent
+- Use test data carefully
+- Store credentials in environment variables
+- Run smoke tests before regression
+- Capture screenshots and traces for failed tests
+
+## Example QA Validation Flow
+1. Open application
+2. Login with valid credentials
+3. Verify dashboard
+4. Search product
+5. Add product to cart
+6. Verify cart item
+7. Logout
+8. Generate test report
+
+## Common Interview Explanation
+In my project, I used Playwright with JavaScript for end-to-end UI automation. I created test scripts for login, product search, add to cart, and validation flows. I used assertions to verify expected results, captured screenshots on failure, and generated HTML reports for test execution analysis.

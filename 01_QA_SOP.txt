@@ -1,0 +1,99 @@
+# QA SOP – Software Testing Process
+
+## Purpose
+This SOP defines the standard QA process for manual testing, automation testing, API testing, defect reporting, regression testing, and release validation.
+
+## QA Workflow
+1. Requirement understanding
+2. Test scenario identification
+3. Test case creation
+4. Test data preparation
+5. Test execution
+6. Bug reporting in Jira
+7. Retesting after bug fix
+8. Regression testing
+9. Test summary report
+10. QA sign-off
+
+## Requirement Analysis Checklist
+- Requirement is clear
+- Acceptance criteria are available
+- Positive and negative scenarios are identified
+- Test data is available
+- Dependencies are understood
+- UI, API, and database impact is reviewed
+
+## Test Case Creation Standard
+Each test case should include:
+- Test Case ID
+- Module Name
+- Scenario
+- Preconditions
+- Test Steps
+- Test Data
+- Expected Result
+- Actual Result
+- Status
+- Priority
+- Remarks
+
+## Bug Reporting Standard
+Each valid bug should include:
+- Clear summary
+- Environment details
+- Build version
+- Steps to reproduce
+- Expected result
+- Actual result
+- Screenshot, video, logs, or API response
+- Severity
+- Priority
+
+## Defect Life Cycle
+New → Assigned → In Progress → Fixed → Ready for QA → Retest → Verified → Closed
+
+If issue still exists:
+Reopen → Assigned → Fixed → Retest → Verified → Closed
+
+## Regression Testing
+Regression testing should be performed when:
+- New feature is added
+- Existing feature is modified
+- Bug fix is deployed
+- Release build is ready
+- Integration changes are done
+
+## Automation Testing SOP
+Automation should be considered for:
+- Stable test cases
+- Regression scenarios
+- Smoke test cases
+- High priority business flows
+- Repetitive execution
+
+Automation should not be preferred for:
+- Frequently changing UI
+- One-time testing
+- Exploratory testing
+- CAPTCHA or OTP dependent flows without test bypass
+
+## API Testing SOP
+API validation should include:
+- Status code
+- Response body
+- Response schema
+- Response time
+- Headers
+- Authentication
+- Authorization
+- Negative scenarios
+- Database validation where applicable
+
+## QA Sign-off Criteria
+QA sign-off can be given when:
+- All critical and high severity bugs are closed
+- Smoke testing is completed
+- Regression testing is completed
+- Test summary report is shared
+- No blocker issue is open
+- Business acceptance criteria are met
